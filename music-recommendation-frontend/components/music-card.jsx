@@ -26,7 +26,7 @@ function MusicCard(props) {
 
                 <Stack mt={6} spacing='3'>
                     <Heading size='md' noOfLines={2} maxWidth={150}>{track}</Heading>
-                    <Text noOfLines={1} maxWidth={150}>{artist}</Text>
+                    <Text noOfLines={1} maxWidth={150}>{artist.replaceAll(';', ', ')}</Text>
                 </Stack>
             </CardBody>
         </Card>

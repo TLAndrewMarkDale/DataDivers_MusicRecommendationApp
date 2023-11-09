@@ -60,6 +60,8 @@ function SearchBar(props) {
               key={result.track_id}
               p={2}
               cursor={"pointer"}
+              fontWeight={'bold'}
+              color={'gray'}
               onClick={handleItemClick(result)}
             >
               {result.track}

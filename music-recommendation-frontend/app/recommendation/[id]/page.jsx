@@ -2,7 +2,7 @@
 
 import MusicTitles from '@/components/music-tiles'
 import SearchBar from '@/components/search-bar-with-box'
-import { Box, Flex, Heading, List, Text, Image } from '@chakra-ui/react'
+import { Box, Flex, Heading, List, Text, Image, Divider } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
 const Recommendation = ({params}) => {
@@ -44,15 +44,15 @@ const Recommendation = ({params}) => {
     // })
 
   return (  
-    <Box width='100%' p={8}>
-        <Box width='70%' alignItems={'center'} >
+    <Flex direction={'column'} alignItems={'center'} width='100%' p={8}>
+        <Box width='50%' alignItems={'center'} >
         {/* <SearchBar /> */}
         
         <Flex direction={'column'} mt={8} gap={'6'}>
             {/* 
             //TODO : Using prop pass the 
             */}
-            <Heading size={'lg'}>Song '{selectedTrack.track}'</Heading>
+            <Heading size={'lg'}>Result</Heading>
 
             <Flex gap={'4'}>
 
@@ -62,30 +62,38 @@ const Recommendation = ({params}) => {
                     src='/default_music.png'
              />
 
-
-            <Flex direction={'column'} >
-                <Text>Song Name : {selectedTrack.track}</Text>
-                <Text>{selectedTrack.artist} . {selectedTrack.genre}</Text>
+            <Flex direction={'column'} justifyContent={'center'}>
+                <Text textColor={'black'} fontWeight={'bold'}>{selectedTrack.track}</Text>
+                <Text textColor={'gray'} fontWeight={'bold'}>{selectedTrack.artist.replaceAll(';', ', ')}</Text>
             </Flex>
 
             </Flex>
         </Flex>
         </Box>
         
-        <Flex direction={'column'} mt={8} width='70%'>
+        <Flex direction={'column'} mt={8} width='50%'>
             
             <Heading>You Might Also Like</Heading>
             
-            <List mt={6} spacing={6} maxH={'md'} overflowY={'scroll'}>
-                { recommendedTrack.map(item => <MusicTitles key={item.track_id}  track_id={item["track_id"]}
+            <List mt={6} spacing={6} maxH={'lg'} overflowY={'scroll'} px={6}>
+                { recommendedTrack.map(item => 
+                
+                <Flex flexDirection={'column'} gap={'4'}>
+                    <MusicTitles key={item.track_id}  track_id={item["track_id"]}
                     artist={item["artist"]}
                     track={item["track"]}
                     genre={item["genre"]}
                     pop={item["pop"]}
-                    item={item}/>) }
+                    item={item}/>
+
+                    <Divider/>
+                </Flex>
+                    
+                    
+                ) }
             </List>
         </Flex>        
-    </Box>
+    </Flex>
   )
 }
 

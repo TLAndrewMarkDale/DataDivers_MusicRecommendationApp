@@ -1,28 +1,23 @@
-import { Flex, Image, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Flex, Image, Text } from "@chakra-ui/react";
+import React from "react";
 
 function MusicTitles(props) {
-
-  const { track_id, artist, track, genre, pop, item, onItemClick  } = props;
+  const { track_id, artist, track, genre, pop, item, onItemClick } = props;
 
   return (
-        <>
-            <Flex gap={'6'}>
-            <Image 
-                    maxW={90}
-                    maxh={90}
-                    src='/default_music.png'
-             />
-            
+    <>
+      <Flex gap={"6"}>
+        <Image maxW={"4rem"} src="/default_music.png" />
 
-            <Flex direction={'column'}>
-            <Text>{track}</Text>
-                <Text>{artist} . {genre}</Text>
-            </Flex>
-
-            </Flex>
-        </>
-  )
+        <Flex direction={"column"} justifyContent={"center"}>
+          <Text textColor={'black'} fontWeight={'bold'}>{track}</Text>
+          <Text textColor={'gray'}  fontWeight={'bold'}>
+            {artist.replaceAll(';', ', ')}
+          </Text>
+        </Flex>
+      </Flex>
+    </>
+  );
 }
 
-export default MusicTitles
+export default MusicTitles;
