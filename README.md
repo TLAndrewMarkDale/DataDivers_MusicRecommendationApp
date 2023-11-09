@@ -31,6 +31,8 @@ Get the code by either cloning this repository using git
 
 Demo : http://soundsuggest.online
 
+To use this demo, please ensure that you set up the back-end as specified below. The back-end is still hosted locally.
+
 ###  Prerequisites
 
 You will need [Node.js](https://nodejs.org) version 18.0 or greater installed on your system.
@@ -69,13 +71,16 @@ You will need [Python](https://www.python.org/downloads/) version 3.10.12 or gre
 Once downloaded, open the terminal in the project directory and navigate to music-recommendation-backend , and install dependencies with:
 
     pip install flask
-    pip install nump
+    pip install numpy
     pip install flask-cors
     pip install scikit-learn
+    pip install sklearn
 
 
 After all the dependencies is being installed. Then start the backend app with:
 
     python flask_NN.py
 
-This hosts the python back-end on localhost:5000.
+This hosts the python back-end on http://localhost:5000
+
+Now that the server is running, feel free to use the demo or the locally built project!
