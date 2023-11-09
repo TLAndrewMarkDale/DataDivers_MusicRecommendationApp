@@ -7,7 +7,11 @@ import React, { useEffect, useState } from 'react'
 
 const Recommendation = ({params}) => {
     const {id} = params;
-    const [selectedTrack, setSelectedTrack] = useState({})
+    const [selectedTrack, setSelectedTrack] = useState({
+        track_id : '',
+        track: '',
+        artist: '',
+    })
     const [recommendedTrack, setRecommendedTrack] = useState([])
     useEffect(() => {
         fetchTrackId();

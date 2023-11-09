@@ -57,6 +57,7 @@ export default function Home() {
               <Wrap spacing="60px" mt={6}>
                 {trendingList.map((item) => (
                   <MusicCard
+                    key={item['track_id']}
                     track_id={item["track_id"]}
                     artist={item["artist"]}
                     track={item["track"]}

@@ -55,7 +55,7 @@ function SearchBar(props) {
           boxShadow="md"
         >
           {searchResult.map((result) => (
-            <Flex direction={'column'} gap={'2'}>
+            <Flex direction={'column'} gap={'2'} key={result.track_id}>
             <Box
               key={result.track_id}
               p={2}
