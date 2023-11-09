@@ -1,3 +1,4 @@
+
 # Data Divers: Music Recommendation App
 The GitHub respository for the Data Divers: Music Recommendation App capstone project
 
@@ -7,7 +8,7 @@ Team Member: Ashutosh Pandey || 100941194<br />
 Team Member: Darren Saguil || 100458141<br />
 Team Member: Nikhil Lohar || 100925168
 
-Application name: RecNN
+## Application name: RecNN
 
 Reasoning: Portmanteau of Recommendation + Nearest Neighbours and a play on reckoning. Since we're calculating or estimating recommendations for a particular song, we feel this is perfect.
 
@@ -19,13 +20,51 @@ Kick-Off Meeting PowerPoint, MVP PowerPoint
 ## **MVP**
 To run the project:
 
-Front-end:
+Get the code by either cloning this repository using git
 
-Back-end:
+    git clone https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp.git
 
-Requirements: Flask, Pandas, Numpy, Flask-CORS, Pickle, sci-kit learn
 
-To run:
-* python flask_NN.py
+... or [downloading source code](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/archive/refs/heads/dev.zip) as a zip archive
+
+## Front-end
+
+Demo : http://soundsuggest.online
+
+###  Prerequisites
+
+You will need [Node.js](https://nodejs.org) version 18.0 or greater installed on your system.
+
+### Setup
+
+Once downloaded, open the terminal in the project directory and navigate to music-recommendation-frontend , and install dependencies with:
+
+    npm install
+
+After all the dependencies is being installed. Then start the frontend app with:
+
+    npm run dev
+
+This hosts the front-end on http://localhost:3000/.
+
+## Back-end
+
+###  Prerequisites
+
+You will need [Python](https://www.python.org/downloads/) version 3.10.12 or greater installed on your system
+
+### Setup
+
+Once downloaded, open the terminal in the project directory and navigate to music-recommendation-backend , and install dependencies with:
+
+    pip install flask
+    pip install nump
+    pip install flask-cors
+    pip install scikit-learn
+
+
+After all the dependencies is being installed. Then start the backend app with:
+
+    python flask_NN.py
 
 This hosts the python back-end on localhost:5000.
