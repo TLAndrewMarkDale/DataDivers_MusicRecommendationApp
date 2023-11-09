@@ -47,6 +47,17 @@ After all the dependencies is being installed. Then start the frontend app with:
 
 This hosts the front-end on http://localhost:3000/.
 
+### Screenshots
+
+**Home page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home.png)
+
+**Home with search result**
+![When a user enter upto 3 letter the song suggestion are been showed which contains those word](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home%20with%20search%20bar.png)
+
+**Recommendation page**
+![After selecting first song from search result we got the following recommendation using KNN algorithm](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Recommendation.png)
+
 ## Back-end
 
 ###  Prerequisites
