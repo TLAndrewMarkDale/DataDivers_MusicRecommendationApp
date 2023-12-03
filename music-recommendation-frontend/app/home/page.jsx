@@ -9,12 +9,19 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import SpotifyWebApi from "spotify-web-api-js";
+import { loginURL } from "./login";
+import { getTokenFromURL } from "./login";
+const spotify = new SpotifyWebApi();
 
 export default function Home() {
   const router = useRouter();
   const [trendingList, setTrendingList] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     fetch("/api/local/trending", { method: "GET" })
@@ -22,6 +29,21 @@ export default function Home() {
       .then((data) => {
         setTrendingList(data);
       });
+
+    const token = getTokenFromURL().access_token;
+
+    window.location.hash = "";
+
+    if (token) {
+      spotify.setAccessToken(token);
+
+      spotify.getMe().then((user) => {
+        console.log("Person: ", user);
+        setUser(user);
+
+        
+      });
+    }
   });
 
   const handleItemClick = (item) => {
@@ -44,8 +66,11 @@ export default function Home() {
               onInputChange={handleInputChange}
               searchResult={searchResult}
             />
-          </Box> */}
-
+          </Box> */
+          /** if there is a user logged in, say hi*/
+          }
+          {spotify.getAccessToken() ? (<a>Hi, {user.display_name}</a>) : (<a href={loginURL} id = "signInButton"> Login </a>)}
+          
           <Box w="65%" marginTop={8}>
             <Flex
               direction={"column"}
