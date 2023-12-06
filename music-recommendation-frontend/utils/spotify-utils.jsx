@@ -81,6 +81,21 @@ class SpotifyUtility {
         console.log("Redirect URl ", baseUrl + redirectUrl)
         return loginURL(baseUrl + redirectUrl)
     } 
+
+
+    makePlaylist(name, description, tracks) {
+        return spotify.createPlaylist(localStorage.getItem('user').user_id).then((playlist) => {
+            console.log("Playlist : ", playlist)
+            spotify.changePlaylistDetails(playlist.id, {
+                name: name,
+                description: description
+            })
+            return spotify.addTracksToPlaylist(playlist.id, tracks).then((data) => {
+                console.log("Data : ", data)
+                return playlist;
+            })
+        })
+    }
 }
 
 let spotifyUtilityInstance = Object.freeze(new SpotifyUtility())
