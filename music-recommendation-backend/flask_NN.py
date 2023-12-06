@@ -7,9 +7,9 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-neigh = pickle.load(open("music-recommendation-backend\\knn_model_recNN", 'rb'))
-training_df = pd.read_csv("music-recommendation-backend\\training_csv.csv")
-music_df = pd.read_csv("music-recommendation-backend\\cleaned_music.csv")
+neigh = pickle.load(open("music-recommendation-backend/knn_model_recNN", 'rb'))
+training_df = pd.read_csv("music-recommendation-backend/training_csv.csv")
+music_df = pd.read_csv("music-recommendation-backend/cleaned_music.csv")
 search_df = music_df[['track_id', 'artists', 'track_name']].copy()
 
 @app.route('/searchbar', methods=['GET', 'POST'])
