@@ -22,6 +22,7 @@ export default function Home() {
   const [searchResult, setSearchResult] = useState([]);
 
   const [user, setUser] = useState([]);
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     fetch("/api/local/trending", { method: "GET" })
@@ -38,10 +39,7 @@ export default function Home() {
       spotify.setAccessToken(token);
 
       spotify.getMe().then((user) => {
-        console.log("Person: ", user);
-        setUser(user);
-
-        
+        setUser(user);      
       });
     }
   });
@@ -80,7 +78,9 @@ export default function Home() {
               <Heading size={"lg"}>Trending Songs for you</Heading>
 
               <Wrap spacing="60px" mt={6}>
-                {trendingList.map((item) => (
+                {
+                trendingList.map((item) => (
+
                   <MusicCard
                     key={item['track_id']}
                     track_id={item["track_id"]}
@@ -92,6 +92,7 @@ export default function Home() {
                     onItemClick={handleItemClick}
                   />
                 ))}
+
               </Wrap>
             </Flex>
           </Box>
