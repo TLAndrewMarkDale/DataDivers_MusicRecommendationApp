@@ -10,6 +10,45 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 neigh = pickle.load(open("knn_model_recNN", 'rb'))
 training_df = pd.read_csv("training_csv.csv")
 music_df = pd.read_csv("cleaned_music.csv")
+search_df = music_df[['track_id', 'artists', 'track_name']].copy()
+
+@app.route('/searchbar', methods=['GET', 'POST'])
+@cross_origin(supports_credentials=True, origin='*')
+def send_searchbar():
+    search_criteria = request.get_data()
+    search_criteria = search_criteria.decode()
+    found_df = search_df[search_df['artists'].str.contains(search_criteria) | search_df['track_name'].str.contains(search_criteria)]
+    json_array = []
+    found_df = found_df.head(20)
+    for index, song in found_df.iterrows():
+        json_array.append({'track_id': song['track_id'],
+                            'artist': song['artists'],
+                            'track': song['track_name'],
+                            'pop': int(song['popularity']),
+                            'length': int(song['duration_ms']),
+                            'genre': song['track_genre']})
+    response = jsonify(json_array)
+    return response
+
+
+@app.route('/top10', methods=['GET'])
+@cross_origin(supports_credentials=True, origin="*")
+def send_topten():
+    topten = music_df.nlargest(10, 'popularity')
+    json_array = []
+    for index, song in topten.iterrows():
+        json_array.append({'track_id': song['track_id'],
+                           'artist': song['artists'],
+                           'track': song['track_name'],
+                           'pop': int(song['popularity']),
+                           'length': int(song['duration_ms']),
+                           'genre': song['track_genre']})
+    response = jsonify(json_array)
+    return response
+
+
+
+
 @app.route('/recommendations', methods=['POST'])
 @cross_origin(supports_credentials=True, origin="*")
 def send_recommendations():
