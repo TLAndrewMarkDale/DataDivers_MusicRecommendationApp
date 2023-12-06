@@ -1,12 +1,14 @@
 "use client";
 import MusicCard from "@/components/music-card";
-import SearchBar from "@/components/search-bar-with-box";
-import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
   Heading,
   Wrap,
+  VStack,
+  List,
+  Container,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -29,35 +31,54 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Box w="100%" h="100%">
-        <Flex
-          h="100%"
-          direction="column"
-          mt={20}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          {/* <Box w="40%">
-            <SearchBar
-              onItemClick={handleItemClick}
-              onInputChange={handleInputChange}
-              searchResult={searchResult}
-            />
-          </Box> */}
+    <Container
+      w="100%"
+      h="100%"
+      p={0}
+      m={0}
+      maxW={"100%"}
+      maxH={"100%"}
+      style={{}}
+    >
+      <Flex
+        h="100%"
+        w={"100%"}
+        direction="column"
+        mt={6}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
 
-          <Box w="65%" marginTop={8}>
-            <Flex
-              direction={"column"}
-              alignItems={"start"}
-              justifyContent={"center"}
+        <Flex direction={"column"} w={"80%"} minHeight={'container.md'}>
+          <VStack align={"flex-start"}>
+            <Heading size={"lg"} marginBottom={"6"}>
+              Trending Songs for you
+            </Heading>
+            <List
+              spacing={6}
+              align="flex-start"
+              overflowY={"auto"}
+              maxH={"container.md"}
+              css={
+                {
+                  '&::-webkit-scrollbar': {
+                    width: '4px',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    width: '6px',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    background: '#1DB954',
+                    borderRadius: '24px',
+                    padding: '4px',
+                  },
+                }
+              }
             >
-              <Heading size={"lg"}>Trending Songs for you</Heading>
-
-              <Wrap spacing="60px" mt={6}>
+              <Wrap spacing={"10"}>
                 {trendingList.map((item) => (
                   <MusicCard
-                    key={item['track_id']}
+                    key={item["track_id"]}
                     track_id={item["track_id"]}
                     artist={item["artist"]}
                     track={item["track"]}
@@ -68,10 +89,10 @@ export default function Home() {
                   />
                 ))}
               </Wrap>
-            </Flex>
-          </Box>
+            </List>
+          </VStack>
         </Flex>
-      </Box>
-    </>
+      </Flex>
+    </Container>
   );
 }
