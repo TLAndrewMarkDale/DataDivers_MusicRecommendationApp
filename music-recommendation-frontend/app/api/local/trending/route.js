@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-export const GET = async(request, { params }) => {
+export const GET = async(request, { params }) => {  
     try {
         const file = await fs.readFile(process.cwd() + '/public/music2.json', 'utf-8');
         const data = JSON.parse(file)

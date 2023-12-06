@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   HStack,
   Stack,
   useColorMode,
@@ -15,9 +16,10 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import spotifyUtilityInstance from "@/utils/spotify-utils";
 
 function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode('dark');
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('')
   const router = useRouter();
@@ -48,15 +50,21 @@ function Navbar() {
 
   };
 
+  const handleClick = () => {
+    // location.href()
+    const pathName = location.pathname
+    location.replace(spotifyUtilityInstance.loginToSpotify(pathName))
+  }
+
 
 
   return (
     <>
-      <Box px={4} borderBottom={'1px'} borderStyle={'solid'} borderColor={'gray.300'}>
+      <Box p={6}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>LOGO</Box>
-
-          <Box w="40%">
+          <Flex w={'90%'} alignItems={'center'}>
+          <Box w={'12%'}><Image src="recnn3.svg"></Image></Box>
+          <Box w={'80%'}>
             <SearchBar
               onItemClick={handleItemClick}
               onInputChange={handleInputChange}
@@ -64,44 +72,25 @@ function Navbar() {
               searchTerm={searchTerm}
             />
           </Box>
+          </Flex>
+
+
 
           <Flex alignItems={"center"} spacing={6}>
             <HStack
               as={"nav"}
               display={{ base: "none", md: "flex" }}
-              spacing={4}
+              spacing={10}
               alignItems={"center"}
             >
-              <Box
-                as="a"
-                px={4}
-                py={2}
-                rounded={"md"}
-                _hover={{
-                  textDecoration: "none",
-                  bg: useColorModeValue("gray.200", "gray.700"),
-                }}
-                href={"/home"}
-              >
-                Home
-              </Box>
-              <Box
-                _hover={{
-                  textDecoration: "none",
-                  bg: useColorModeValue("gray.200", "gray.700"),
-                }}
-                as="a"
-                px={4}
-                py={2}
-                rounded={"md"}
-                href={"#"}
-              >
-                About
-              </Box>
+
+            <Button variant={'solid'} bg={'#1DB954'} height={12} w={32} onClick={handleClick}>Login</Button>
 
               <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode} backgroundColor={"transparent"}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              <Button onClick={toggleColorMode} backgroundColor={"transparent"} height={14} w={14} _hover={{
+                bg: '#38ef7d80'
+              }}>
+                {colorMode === "light" ? <MoonIcon w={'100%'} h={'100%'} /> : <SunIcon w={'100%'} h={'100%'} />}
               </Button>
             </Stack>
 

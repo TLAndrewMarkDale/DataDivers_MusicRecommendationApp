@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, Box, InputGroup, InputLeftElement, Divider, Flex } from "@chakra-ui/react";
+import { Input, Box, InputGroup, InputLeftElement, Divider, Flex,   useColorModeValue, } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 function SearchBar(props) {
@@ -22,16 +22,30 @@ function SearchBar(props) {
     }
   };
 
+  const searchBarInputBox = {
+      bg: useColorModeValue('#D3D3D3', '#212121'),
+      border:'1px',
+      borderColor:useColorModeValue('#808080', '#646464'),
+      position: 'relative',
+      borderRadius:'3xl',
+      height:'16'
+}
+
   return (
-    <Box position={"relative"} >
-      <InputGroup w="100%">
-        <InputLeftElement pointerEvents={"none"}>
-          <SearchIcon color="gray.300" mt="2" />
+    <Box __css={searchBarInputBox}
+    >
+      <InputGroup w="100%" border={'0px'} height='100%' _focusVisible={{outline: 'none'}}>
+        <InputLeftElement pointerEvents={"none"} height='100%' border={'0px'} outline={'none'} marginLeft={'5'} fontSize={'xl'}>
+          <SearchIcon color={useColorModeValue('#808080', '#646464')} />
         </InputLeftElement>
-        <Input
+        <Input border={'0px'}
+        _focusVisible={{outline: 'none'}}
+        height='100%'
+        marginLeft={'8  '}
           type={"search"}
+          color={useColorModeValue('#000', '#fff')}
+          fontSize={'xl'}
           placeholder="Search Songs"
-          size={"lg"}
           value={searchTerm}
           onChange={handleSearch}
         />
@@ -42,17 +56,32 @@ function SearchBar(props) {
           top="100%"
           left="0"
           p={4}
-          border={"1px"}
+          border={"0px"}
           borderStyle={"solid"}
-          borderColor={"gray.300"}
-          rounded={"md"}
+          borderColor={useColorModeValue('#808080', '#646464')}          
+          rounded={"lg"}
           width="100%"
           maxHeight={'xl'}
           overflowY={'scroll'}
           mt={4}
           zIndex={9}
-          backgroundColor="white"
+          bg={useColorModeValue('#D3D3D3', '#212121')}          
           boxShadow="md"
+          css={
+            {
+              '&::-webkit-scrollbar': {
+                width: '4px',
+              },
+              '&::-webkit-scrollbar-track': {
+                width: '6px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: '#1DB954',
+                borderRadius: '24px',
+                padding: '4px',
+              },
+            }
+          }
         >
           {searchResult.map((result) => (
             <Flex direction={'column'} gap={'2'} key={result.track_id}>
@@ -61,12 +90,12 @@ function SearchBar(props) {
               p={2}
               cursor={"pointer"}
               fontWeight={'bold'}
-              color={'gray'}
+              color={useColorModeValue('#000', '#fff')}
               onClick={handleItemClick(result)}
             >
               {result.track}
             </Box>
-            <Divider/>
+            <Divider borderColor={useColorModeValue('#808080', '#fff')}/>
             </Flex>
           ))}
         </Box>

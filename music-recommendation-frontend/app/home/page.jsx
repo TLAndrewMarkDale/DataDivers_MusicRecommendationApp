@@ -1,20 +1,17 @@
 "use client";
 import MusicCard from "@/components/music-card";
-import SearchBar from "@/components/search-bar-with-box";
-import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
   Heading,
   Wrap,
+  VStack,
+  List,
+  Container,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-import SpotifyWebApi from "spotify-web-api-js";
-import { loginURL } from "./login";
-import { getTokenFromURL } from "./login";
-const spotify = new SpotifyWebApi();
 
 export default function Home() {
   const router = useRouter();
@@ -25,64 +22,72 @@ export default function Home() {
   const [image, setImage] = useState('');
 
   useEffect(() => {
-    fetch("/api/local/trending", { method: "GET" })
+    // const trackid = localStorage.getItem('track-id');
+
+    // if(trackid) {
+    //   localStorage.removeItem(trackid)
+    //   localStorage.removeItem('track-id')
+    // }
+    fetch("/api/server/top10")
       .then((res) => res.json())
       .then((data) => {
         setTrendingList(data);
       });
-
-    const token = getTokenFromURL().access_token;
-
-    window.location.hash = "";
-
-    if (token) {
-      spotify.setAccessToken(token);
-
-      spotify.getMe().then((user) => {
-        setUser(user);      
-      });
-    }
-  });
+  }, []);
 
   const handleItemClick = (item) => {
     router.push("/recommendation/" + item.track_id);
   };
 
   return (
-    <>
-      <Box w="100%" h="100%">
-        <Flex
-          h="100%"
-          direction="column"
-          mt={20}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          {/* <Box w="40%">
-            <SearchBar
-              onItemClick={handleItemClick}
-              onInputChange={handleInputChange}
-              searchResult={searchResult}
-            />
-          </Box> */
-          /** if there is a user logged in, say hi*/
-          }
-          {spotify.getAccessToken() ? (<a>Hi, {user.display_name}</a>) : (<a href={loginURL} id = "signInButton"> Login </a>)}
-          
-          <Box w="65%" marginTop={8}>
-            <Flex
-              direction={"column"}
-              alignItems={"start"}
-              justifyContent={"center"}
-            >
-              <Heading size={"lg"}>Trending Songs for you</Heading>
+    <Container
+      w="100%"
+      h="100%"
+      p={0}
+      m={0}
+      maxW={"100%"}
+      maxH={"100%"}
+      style={{}}
+    >
+      <Flex
+        h="100%"
+        w={"100%"}
+        direction="column"
+        mt={6}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
 
-              <Wrap spacing="60px" mt={6}>
+        <Flex direction={"column"} w={"80%"} minHeight={'container.md'}>
+          <VStack align={"flex-start"}>
+            <Heading size={"lg"} marginBottom={"6"}>
+              Trending Songs for you
+            </Heading>
+            <List
+              spacing={6}
+              align="flex-start"
+              overflowY={"auto"}
+              maxH={"container.md"}
+              css={
                 {
-                trendingList.map((item) => (
-
+                  '&::-webkit-scrollbar': {
+                    width: '4px',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    width: '6px',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    background: '#1DB954',
+                    borderRadius: '24px',
+                    padding: '4px',
+                  },
+                }
+              }
+            >
+              <Wrap spacing={"10"}>
+                {trendingList.map((item) => (
                   <MusicCard
-                    key={item['track_id']}
+                    key={item["track_id"]}
                     track_id={item["track_id"]}
                     artist={item["artist"]}
                     track={item["track"]}
@@ -94,10 +99,10 @@ export default function Home() {
                 ))}
 
               </Wrap>
-            </Flex>
-          </Box>
+            </List>
+          </VStack>
         </Flex>
-      </Box>
-    </>
+      </Flex>
+    </Container>
   );
 }
