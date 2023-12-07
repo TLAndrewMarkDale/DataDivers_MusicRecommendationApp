@@ -32,8 +32,8 @@ import React, { isValidElement, useEffect, useState } from "react";
 
 const Recommendation = ({ params }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const  [isPLaylistCreating, setIsPLaylistCreating] = useState(false)
-  const [image, setImage] = useState('');
+  const [isPLaylistCreating, setIsPLaylistCreating] = useState(false);
+  const [image, setImage] = useState("");
 
   const { id } = params;
   const [selectedTrack, setSelectedTrack] = useState({
@@ -46,7 +46,7 @@ const Recommendation = ({ params }) => {
 
   const handlePlaylistName = async (event) => {
     setPlaylistName(event.target.value);
-    savePlaylist(playlistName, tracksAddToPlaylist)
+    savePlaylist(playlistName, tracksAddToPlaylist);
   };
 
   const savePlaylist = (name, trackList) => {
@@ -56,31 +56,36 @@ const Recommendation = ({ params }) => {
     // }
     // localStorage.setItem('track-id', id)
     // localStorage.setItem(id, data)
-    
-  }
+  };
 
   const createPlaylist = () => {
-    setIsPLaylistCreating(true)
-    spotifyUtilityInstance.createPlaylist({
-      playlist_name : playlistName,
-      track_list: tracksAddToPlaylist
-    }).then(res => res.json()).then(data => {
-      if(data && data.id) {
-        spotifyUtilityInstance.addTracksToPlaylist({
-          playlist_id : data.id,
-          track_list : tracksAddToPlaylist
-        }).then(res => res.json()).then(trackData => {
-          if(trackData) {
-            setIsPLaylistCreating(false)
-            onOpen();
-            setTracksAddToPlaylist([])
-            setPlaylistName('')
-          }
-          console.log("Tracks response : ", trackData)
-        })
-      }
-    })
-  }
+    setIsPLaylistCreating(true);
+    spotifyUtilityInstance
+      .createPlaylist({
+        playlist_name: playlistName,
+        track_list: tracksAddToPlaylist,
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.id) {
+          spotifyUtilityInstance
+            .addTracksToPlaylist({
+              playlist_id: data.id,
+              track_list: tracksAddToPlaylist,
+            })
+            .then((res) => res.json())
+            .then((trackData) => {
+              if (trackData) {
+                setIsPLaylistCreating(false);
+                onOpen();
+                setTracksAddToPlaylist([]);
+                setPlaylistName("");
+              }
+              console.log("Tracks response : ", trackData);
+            });
+        }
+      });
+  };
 
   const [recommendedTrack, setRecommendedTrack] = useState([]);
   useEffect(() => {
@@ -96,21 +101,25 @@ const Recommendation = ({ params }) => {
       .then((data) => {
         console.log(" Response find : ", data);
         setSelectedTrack(data);
-        getImage(data)
+        getImage(data);
       });
   };
 
   const getImage = (trackName) => {
-    spotifyUtilityInstance.getSpotifyInstance().searchTracks(trackName, {limit: 1}).then((data) => {
-      if(data && data.tracks) {
-         setImage(data.tracks.items[0].album.images[0].url);
-      }else {
-        return '/default_music.png'
-      }
-    }).catch(error => {
-      return '/default_music.png'
-    })
-  }
+    spotifyUtilityInstance
+      .getSpotifyInstance()
+      .searchTracks(trackName, { limit: 1 })
+      .then((data) => {
+        if (data && data.tracks) {
+          setImage(data.tracks.items[0].album.images[0].url);
+        } else {
+          return "/default_music.png";
+        }
+      })
+      .catch((error) => {
+        return "/default_music.png";
+      });
+  };
 
   const isAddedToPlaylist = (musicItem) => {
     return tracksAddToPlaylist.find(
@@ -149,8 +158,7 @@ const Recommendation = ({ params }) => {
     }
   };
 
-    savePlaylist(playlistName,tracksAddToPlaylist)
-  };
+  savePlaylist(playlistName, tracksAddToPlaylist);
 
   return (
     <Flex
@@ -167,7 +175,11 @@ const Recommendation = ({ params }) => {
             <Heading size={"lg"}>Result</Heading>
 
             <Flex gap={"4"}>
-              <Image maxW={100} maxh={100} src={image || "/default_music.png"} />
+              <Image
+                maxW={100}
+                maxh={100}
+                src={image || "/default_music.png"}
+              />
 
               <Flex direction={"column"} justifyContent={"center"}>
                 <Text
@@ -317,7 +329,7 @@ const Recommendation = ({ params }) => {
           isLoading={isPLaylistCreating}
           height={"16"}
           maxH={"16"}
-          loadingText='Creating Playlist'
+          loadingText="Creating Playlist"
           variant="solid"
           alignItems={"center"}
           mt={6}
@@ -334,14 +346,14 @@ const Recommendation = ({ params }) => {
           isCentered
           onClose={onClose}
           isOpen={isOpen}
-          bg={useColorModeValue('#D3D3D3', '#212121')}
+          bg={useColorModeValue("#D3D3D3", "#212121")}
           motionPreset="slideInBottom"
         >
           <ModalOverlay />
-          <ModalContent bg={useColorModeValue('#D3D3D3', '#212121')}>
+          <ModalContent bg={useColorModeValue("#D3D3D3", "#212121")}>
             <ModalHeader>Success !</ModalHeader>
             <ModalCloseButton />
-            <ModalBody color={useColorModeValue('#000', '#fff')}>
+            <ModalBody color={useColorModeValue("#000", "#fff")}>
               Playlist is been created
             </ModalBody>
             <ModalFooter>
@@ -359,5 +371,6 @@ const Recommendation = ({ params }) => {
       </Flex>
     </Flex>
   );
+};
 
 export default Recommendation;
