@@ -15,9 +15,17 @@ Reasoning: Portmanteau of Recommendation + Nearest Neighbours and a play on reck
 Most of the work has been done without constantly uploading to GitHub. We will correct this for future portions of the project.
 
 Uploaded documents:
-Kick-Off Meeting PowerPoint, MVP PowerPoint
+Kick-Off Meeting PowerPoint, MVP PowerPoint, MMP Powerpoint
 
-## **MVP**
+### Spotify Login ID and Password
+
+When testing our application, please use the following login credentials. Spotify requires that applications be approved by their team to allow for any user to use the system. Therefore, this is the login credentials approved for our application currently. 
+
+Email : **aidi10032023@gmail.com**
+
+Password : **aidi2023**
+
+## **MVP** & **MMP**
 To run the project:
 
 Get the code by either cloning this repository using git
@@ -29,9 +37,11 @@ Get the code by either cloning this repository using git
 
 ## Front-end
 
-Demo : http://soundsuggest.online
+~~Demo : http://soundsuggest.online~~
 
 To use this demo, please ensure that you set up the back-end as specified below. The back-end is still hosted locally.
+
+#### Update: For the MMP portion of the project, both the frontend and backend are hosted locally. They will be hosted on the cloud for the final presentation.
 
 ###  Prerequisites
 
@@ -49,30 +59,18 @@ After all the dependencies is being installed. Then start the frontend app with:
 
 This hosts the front-end on http://localhost:3000/.
 
-### Spotify Login ID and Password
-
-Email : **aidi10032023@gmail.com**
-
-Password : **aidi2023**
-
 ### Screenshots
-
-### Phase 1 (MVP)
-
-**Home page**
-![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home.png)
-
-**Home with search result**
-![When a user enter upto 3 letter the song suggestion are been showed which contains those word](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home%20with%20search%20bar.png)
-
-**Recommendation page**
-![After selecting first song from search result we got the following recommendation using KNN algorithm](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Recommendation.png)
-
 
 ### Phase 2 (MMP)
 
-**Login page**
+**Login Page**
 ![Login page with spotify web login](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/1.png)
+
+**Spotify Login Page**
+![Image showing the login page from Spotify](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/spotifylogin.png)
+
+**Spotify Grant Access Page**
+![Image showing the grant access page from Spotify for RecNN](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/grantaccess.png)
 
 **Home page**
 ![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/2%20after%20login.png)
@@ -88,6 +86,20 @@ Password : **aidi2023**
 
 **Playlist Create successfully**
 ![A Dialog has been shown after successful playlist creation ](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Playlist%20Create%20successfully.png)
+
+**Playlist in the Spotify Client**
+![Image showing the created playlist in the actual Spotify client](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/playlistcreated.PNG)
+
+### Phase 1 (MVP)
+
+**Home page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home.png)
+
+**Home with search result**
+![When a user enter upto 3 letter the song suggestion are been showed which contains those word](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home%20with%20search%20bar.png)
+
+**Recommendation page**
+![After selecting first song from search result we got the following recommendation using KNN algorithm](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Recommendation.png)
 
 ## Back-end
 
