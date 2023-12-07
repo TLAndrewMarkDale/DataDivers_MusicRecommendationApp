@@ -11,20 +11,29 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const [trendingList, setTrendingList] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
+  const [user, setUser] = useState([]);
+  const [image, setImage] = useState('');
+
   useEffect(() => {
-    fetch("/api/local/trending", { method: "GET" })
+    // const trackid = localStorage.getItem('track-id');
+
+    // if(trackid) {
+    //   localStorage.removeItem(trackid)
+    //   localStorage.removeItem('track-id')
+    // }
+    fetch("/api/server/top10")
       .then((res) => res.json())
       .then((data) => {
         setTrendingList(data);
       });
-  });
+  }, []);
 
   const handleItemClick = (item) => {
     router.push("/recommendation/" + item.track_id);
@@ -88,6 +97,7 @@ export default function Home() {
                     onItemClick={handleItemClick}
                   />
                 ))}
+
               </Wrap>
             </List>
           </VStack>

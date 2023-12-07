@@ -7,6 +7,7 @@ import {
   Flex,
   Container,
   useColorMode,
+  Tooltip,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { RiTeamFill } from "react-icons/ri";
@@ -15,10 +16,11 @@ import { Icon } from '@chakra-ui/react'
 
 function VerticalNavbar() {
     const bg = useColorModeValue('#D3D3D3', '#212121')
-
+    
   return (
             <Flex position={'relative'} height={'calc(70vh)'} p={"4"} margin={4} borderRadius={'3xl'} bg={bg} alignItems={'center'}>
               <Flex height={"auto"} flexDirection={"column"} bg={bg} gap={'6'}>
+                <Tooltip label='Home'>
                 <Box
                   as="a"
                   px={4}
@@ -36,6 +38,8 @@ function VerticalNavbar() {
                     <Icon as={AiFillHome} fontSize={'4xl'}/>
                     </Flex>
                 </Box>
+                </Tooltip>
+                <Tooltip label='About Us'>
                 <Box
                   _hover={{
                     textDecoration: "none",
@@ -52,6 +56,7 @@ function VerticalNavbar() {
                     <Icon as={RiTeamFill} fontSize={'4xl'}/>
                     </Flex>
                 </Box>
+                </Tooltip>
               </Flex>
             </Flex>
   );
