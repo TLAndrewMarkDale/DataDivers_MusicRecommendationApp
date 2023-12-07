@@ -1,7 +1,19 @@
 "use client";
+import Login from "@/components/login";
 import Navbar from "@/components/navbar";
 import VerticalNavbar from "@/components/vertical-navbar";
-import { ChakraProvider, Flex, Box, useColorModeValue, HStack, Container } from "@chakra-ui/react";
+import spotifyUtilityInstance from "@/utils/spotify-utils";
+import {
+  ChakraProvider,
+  Flex,
+  Box,
+  HStack,
+  Container,
+  useColorModeValue,
+  VStack,
+  Button,
+  Text,
+} from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import theme from "theme/theme";
 
@@ -11,19 +23,22 @@ import theme from "theme/theme";
 // }
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en" h="100%">
       <body h="100%">
         <ChakraProvider theme={theme}>
-          <Container maxW={'calc(100vw)'} w={'calc(100vw)'}>
-          <Navbar />
-          <HStack height={'100%'} maxH={'100%'}>
-            <VerticalNavbar></VerticalNavbar>
-            {children}
-          </HStack>
-          </Container>
+          <Container maxW={"calc(100vw)"} w={"calc(100vw)"}>
+            <Navbar />
+            {spotifyUtilityInstance.checkIfLogin() ? (
+              <HStack height={"100%"} maxH={"100%"}>
+                <VerticalNavbar></VerticalNavbar>
 
+                {children}
+              </HStack>
+            ) : (
+              <Login/>
+            )}
+          </Container>
         </ChakraProvider>
       </body>
     </html>

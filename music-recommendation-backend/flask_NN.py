@@ -17,8 +17,12 @@ search_df = music_df[['track_id', 'artists', 'track_name']].copy()
 def send_searchbar():
     search_criteria = request.get_data()
     search_criteria = search_criteria.decode()
+<<<<<<< Updated upstream
     found_df = search_df[search_df['artists'].str.contains(search_criteria) | search_df['track_name'].str.contains(search_criteria)]
     json_array = []
+=======
+    found_df = search_df[search_df['artists'].str.contains(search_criteria) or search_df['track_name'].str.contains(search_criteria)]
+>>>>>>> Stashed changes
     found_df = found_df.head(20)
     for index, song in found_df.iterrows():
         json_array.append({'track_id': song['track_id'],
@@ -47,8 +51,11 @@ def send_topten():
     return response
 
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 @app.route('/recommendations', methods=['POST'])
 @cross_origin(supports_credentials=True, origin="*")
 def send_recommendations():
@@ -62,6 +69,7 @@ def send_recommendations():
                         "artist": row["artists"],
                         'track': row['track_name'], 
                         'pop': int(row['popularity']),
+                        'length': int(row['duration_ms']),
                         'genre': row['track_genre']})
     response = jsonify(json_array)
     return response

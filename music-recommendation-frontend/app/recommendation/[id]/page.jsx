@@ -3,6 +3,7 @@
 import LoginWarningModel from "@/components/login-warning-model";
 import MusicTitles from "@/components/music-tiles";
 import SearchBar from "@/components/search-bar-with-box";
+import spotifyUtilityInstance from "@/utils/spotify-utils";
 import {
   Box,
   Flex,
@@ -31,6 +32,8 @@ import React, { isValidElement, useEffect, useState } from "react";
 
 const Recommendation = ({ params }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const  [isPLaylistCreating, setIsPLaylistCreating] = useState(false)
+  const [image, setImage] = useState('');
 
   const { id } = params;
   const [selectedTrack, setSelectedTrack] = useState({
@@ -47,12 +50,36 @@ const Recommendation = ({ params }) => {
   };
 
   const savePlaylist = (name, trackList) => {
-    const data = {
-      name : name,
-      trackList: trackList
-    }
-    localStorage.setItem('track-id', id)
-    localStorage.setItem(id, data)
+    // const data = {
+    //   name : name,
+    //   trackList: trackList
+    // }
+    // localStorage.setItem('track-id', id)
+    // localStorage.setItem(id, data)
+    
+  }
+
+  const createPlaylist = () => {
+    setIsPLaylistCreating(true)
+    spotifyUtilityInstance.createPlaylist({
+      playlist_name : playlistName,
+      track_list: tracksAddToPlaylist
+    }).then(res => res.json()).then(data => {
+      if(data && data.id) {
+        spotifyUtilityInstance.addTracksToPlaylist({
+          playlist_id : data.id,
+          track_list : tracksAddToPlaylist
+        }).then(res => res.json()).then(trackData => {
+          if(trackData) {
+            setIsPLaylistCreating(false)
+            onOpen();
+            setTracksAddToPlaylist([])
+            setPlaylistName('')
+          }
+          console.log("Tracks response : ", trackData)
+        })
+      }
+    })
   }
 
   const [recommendedTrack, setRecommendedTrack] = useState([]);
@@ -69,8 +96,21 @@ const Recommendation = ({ params }) => {
       .then((data) => {
         console.log(" Response find : ", data);
         setSelectedTrack(data);
+        getImage(data)
       });
   };
+
+  const getImage = (trackName) => {
+    spotifyUtilityInstance.getSpotifyInstance().searchTracks(trackName, {limit: 1}).then((data) => {
+      if(data && data.tracks) {
+         setImage(data.tracks.items[0].album.images[0].url);
+      }else {
+        return '/default_music.png'
+      }
+    }).catch(error => {
+      return '/default_music.png'
+    })
+  }
 
   const isAddedToPlaylist = (musicItem) => {
     return tracksAddToPlaylist.find(
@@ -126,7 +166,7 @@ const Recommendation = ({ params }) => {
             <Heading size={"lg"}>Result</Heading>
 
             <Flex gap={"4"}>
-              <Image maxW={100} maxh={100} src="/default_music.png" />
+              <Image maxW={100} maxh={100} src={image || "/default_music.png"} />
 
               <Flex direction={"column"} justifyContent={"center"}>
                 <Text
@@ -273,12 +313,14 @@ const Recommendation = ({ params }) => {
           flex={1}
           bg={"#1DB954"}
           w={"md"}
+          isLoading={isPLaylistCreating}
           height={"16"}
           maxH={"16"}
+          loadingText='Creating Playlist'
           variant="solid"
           alignItems={"center"}
           mt={6}
-          onClick={onOpen}
+          onClick={createPlaylist}
           disabled={playlistName.length == 0 || tracksAddToPlaylist.length == 0}
           isDisabled={
             playlistName.length == 0 || tracksAddToPlaylist.length == 0
@@ -296,17 +338,15 @@ const Recommendation = ({ params }) => {
         >
           <ModalOverlay />
           <ModalContent bg={useColorModeValue('#D3D3D3', '#212121')}>
-            <ModalHeader>Need Login </ModalHeader>
+            <ModalHeader>Success !</ModalHeader>
             <ModalCloseButton />
             <ModalBody color={useColorModeValue('#000', '#fff')}>
-              Hi there! To utilize the ‘create playlist feature, you need to
-              sign in through Spotify.
+              Playlist is been created
             </ModalBody>
             <ModalFooter>
               <Button bg="#1DB954" mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button variant="ghost">Login</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

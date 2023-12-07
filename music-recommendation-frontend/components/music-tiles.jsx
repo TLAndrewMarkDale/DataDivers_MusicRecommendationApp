@@ -1,11 +1,32 @@
 import { Flex, Image, Text, useColorModeValue, Button, Icon } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 import { MdOutlinePlaylistAddCheck } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
+import spotifyUtilityInstance from "@/utils/spotify-utils";
 
 function MusicTitles(props) {
   const { track_id, artist, track, genre, pop, item, onItemClick, addToPlaylist, mode, toggleMode } = props;
+  const [image, setImage] = useState('/default_music.png');
+
+
+  useEffect(() =>{
+    getImage(track_id)
+  }, [])
+
+  /** get image from tack and save it in the public folder */
+  const getImage = () => {
+    spotifyUtilityInstance.getSpotifyInstance().searchTracks(track, {limit: 1}).then((data) => {
+      console.log('Data : ', data)
+      if(data && data.tracks) {
+         setImage(data.tracks.items[0].album.images[0].url);
+      }else {
+        return '/default_music.png'
+      }
+    }).catch(error => {
+      return '/default_music.png'
+    })
+  }
 
   const handleItemClick = (item) => {
     return (e) => {
@@ -16,7 +37,7 @@ function MusicTitles(props) {
   return (
     <>
       <Flex gap={"6"}>
-        <Image flex={2} maxW={"4rem"} src="/default_music.png" />
+        <Image flex={2} maxW={"4rem"} src={ image || "/default_music.png"} />
 
         <Flex flex={7} direction={"column"} justifyContent={"center"}>
           <Text textColor={useColorModeValue('black', '#fff')} fontWeight={'bold'}>{track}</Text>
