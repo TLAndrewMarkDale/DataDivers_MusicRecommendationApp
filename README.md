@@ -81,7 +81,7 @@ This hosts the front-end on http://localhost:3000/.
 **Song Added to Playlist Page**
 ![Songs selected from recommended list section and added to playlist and also entered playlist name](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/4%20songs%20added%20to%20playlist.png)
 
-**Clicked on Create playlist Button**
+**Clicked on Create Playlist Button**
 ![Spotify API request have been called to create playlist](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/5%20Sent%20request%20for%20playlist%20creation.png)
 
 **Playlist Create successfully**
