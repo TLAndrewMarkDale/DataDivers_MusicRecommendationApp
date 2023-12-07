@@ -49,7 +49,15 @@ After all the dependencies is being installed. Then start the frontend app with:
 
 This hosts the front-end on http://localhost:3000/.
 
+### Spotify Login ID and Password
+
+Email : **aidi10032023@gmail.com**
+
+Password : **aidi2023**
+
 ### Screenshots
+
+### Phase 1 (MVP)
 
 **Home page**
 ![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Home.png)
@@ -59,6 +67,27 @@ This hosts the front-end on http://localhost:3000/.
 
 **Recommendation page**
 ![After selecting first song from search result we got the following recommendation using KNN algorithm](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Recommendation.png)
+
+
+### Phase 2 (MMP)
+
+**Login page**
+![Login page with spotify web login](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/1.png)
+
+**Home page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/2%20after%20login.png)
+
+**Song Recommendation Page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/3%20song%20selection.png)
+
+**Song Added to Playlist Page**
+![Songs selected from recommended list section and added to playlist and also entered playlist name](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/4%20songs%20added%20to%20playlist.png)
+
+**Clicked on Create playlist Button**
+![Spotify API request have been called to create playlist](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/5%20Sent%20request%20for%20playlist%20creation.png)
+
+**Playlist Create successfully**
+![A Dialog has been shown after successful playlist creation ](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/Playlist%20Create%20successfully.png)
 
 ## Back-end
 
