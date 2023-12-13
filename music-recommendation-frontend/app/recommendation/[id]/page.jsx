@@ -149,6 +149,17 @@ const Recommendation = ({ params }) => {
       });
   };
 
+  const regenerateRecommendedTrack = () => {
+    fetch("/api/server/regeneraterecommendations", {
+      method: "POST",
+      body: id,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setRecommendedTrack(data);
+      });
+  };
+
   const toggleMode = (item, mode) => {
     if (mode == "list-mode") {
       if (isAddedToPlaylist(item)) {
@@ -215,7 +226,7 @@ const Recommendation = ({ params }) => {
           <Heading>You Might Also Like</Heading>
           <Flex direction={'row'} gap={4} mr={'8'}>
           <Tooltip label='Regenerate Recommendation'>
-          <Button onClick={fetchRecommendedTrack}>
+          <Button onClick={regenerateRecommendedTrack}>
             <Icon as={IoRefreshCircle} fontSize={'2xl'}/> 
           </Button>
                 </Tooltip>
