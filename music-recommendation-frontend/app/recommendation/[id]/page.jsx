@@ -173,17 +173,18 @@ const Recommendation = ({ params }) => {
         newTracksList.push(newItem);
       }
       setTracksAddToPlaylist(newTracksList);
+      savePlaylist(playlistName, newTracksList)
     }else {
       setIsAddAll(false)
       const trackIds = recommendedTrack.map(item => item.track_id)
-      
+      const newTracksList = tracksAddToPlaylist.filter((track) => !trackIds.includes(track.track_id))
       setTracksAddToPlaylist(
-        tracksAddToPlaylist.filter((track) => !trackIds.includes(track.track_id))
+        newTracksList
       );
+
+      savePlaylist(playlistName, newTracksList)
     }
 
-
-    savePlaylist(playlistName, tracksAddToPlaylist)
   }
 
   const regenerateRecommendedTrack = () => {

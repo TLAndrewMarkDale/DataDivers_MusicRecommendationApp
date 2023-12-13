@@ -30,7 +30,6 @@ export default function RootLayout({ children }) {
       <head>
       <title>RecNN</title>      
       <link rel="icon" type="image/svg" sizes="16x16" href="/nnsquare-cropped.svg" />
-        <p>Recommend the playlist based on the songs you search</p>
       </head>
       <body h="100%">
         <ChakraProvider theme={theme}>
