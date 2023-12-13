@@ -440,8 +440,8 @@ const Recommendation = ({ params }) => {
             <ModalHeader>Success!</ModalHeader>
             <ModalCloseButton />
             <ModalBody color={useColorModeValue("#000", "#fff")}>
-              Your playlist has been created.
-              Enjoy your AI-driven listening experience!
+              Your playlist has been created.<br></br>
+              Enjoy your AI-driven listening experience!<br></br>
             </ModalBody>
             <ModalFooter>
             <Button borderColor="#1DB954" mr={3} variant={'outline'} onClick={navigateToSpotifyUrl}>
