@@ -104,7 +104,7 @@ def send_regeneration():
     )
     random_neighbours = []
     while len(random_neighbours) < 50:
-        r_nbr=random.randint(2, 999)
+        r_nbr=random.randint(1, 999)
         if r_nbr not in random_neighbours:
             random_neighbours.append(r_nbr)
 
