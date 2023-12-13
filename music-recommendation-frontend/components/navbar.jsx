@@ -92,7 +92,7 @@ function Navbar() {
                   </MenuList>
                 </Menu>
               ) : (
-                <></>
+                <div></div>
               )}
 
               <Stack direction={"row"} spacing={7}>
