@@ -33,6 +33,8 @@ export default function Home() {
       .then((data) => {
         setTrendingList(data);
       });
+      localStorage.removeItem('playlist-data')
+
   }, []);
 
   const handleItemClick = (item) => {

@@ -14,6 +14,8 @@ import {
   Divider,
   Button,
   useColorModeValue,
+  Icon,
+  Tooltip,
   useDisclosure,
   Input,
 } from "@chakra-ui/react";
@@ -29,6 +31,8 @@ import {
 } from "@chakra-ui/react";
 
 import React, { isValidElement, useEffect, useState } from "react";
+import { IoRefreshCircle } from "react-icons/io5";
+import { MdOutlinePlaylistAdd } from "react-icons/md";
 
 const Recommendation = ({ params }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,6 +47,7 @@ const Recommendation = ({ params }) => {
   });
 
   const [playlistName, setPlaylistName] = useState("");
+  const [tracksAddToPlaylist, setTracksAddToPlaylist] = useState([]);
 
   const handlePlaylistName = async (event) => {
     setPlaylistName(event.target.value);
@@ -50,12 +55,11 @@ const Recommendation = ({ params }) => {
   };
 
   const savePlaylist = (name, trackList) => {
-    // const data = {
-    //   name : name,
-    //   trackList: trackList
-    // }
-    // localStorage.setItem('track-id', id)
-    // localStorage.setItem(id, data)
+    const data = {
+      name : name,
+      trackList: trackList
+    }
+    localStorage.setItem('playlist-data', JSON.stringify(data))
   };
 
   const createPlaylist = () => {
@@ -79,6 +83,7 @@ const Recommendation = ({ params }) => {
                 setIsPLaylistCreating(false);
                 onOpen();
                 setTracksAddToPlaylist([]);
+                localStorage.removeItem('playlist-data')
                 setPlaylistName("");
               }
               console.log("Tracks response : ", trackData);
@@ -89,11 +94,17 @@ const Recommendation = ({ params }) => {
 
   const [recommendedTrack, setRecommendedTrack] = useState([]);
   useEffect(() => {
+    if(localStorage.getItem('playlist-data')) {
+      // console.log(" Data : ", localStorage.getItem('playlist-data'))
+      const playlistData = JSON.parse(localStorage.getItem('playlist-data'));
+      setPlaylistName(playlistData.name)
+      setTracksAddToPlaylist(playlistData.trackList)
+    }
+
     fetchTrackId();
     fetchRecommendedTrack();
   }, []);
 
-  const [tracksAddToPlaylist, setTracksAddToPlaylist] = useState([]);
 
   const fetchTrackId = () => {
     fetch("/api/local/find/" + id)
@@ -156,9 +167,8 @@ const Recommendation = ({ params }) => {
         tracksAddToPlaylist.filter((track) => track.track_id != item.track_id)
       );
     }
+      savePlaylist(playlistName, tracksAddToPlaylist);
   };
-
-  savePlaylist(playlistName, tracksAddToPlaylist);
 
   return (
     <Flex
@@ -200,8 +210,23 @@ const Recommendation = ({ params }) => {
         </Box>
 
         <Flex direction={"column"} mt={8}>
-          <Heading>You Might Also Like</Heading>
+          <Flex direction={'row'} justifyContent={'space-between'}>
 
+          <Heading>You Might Also Like</Heading>
+          <Flex direction={'row'} gap={4} mr={'8'}>
+          <Tooltip label='Regenerate Recommendation'>
+          <Button onClick={fetchRecommendedTrack}>
+            <Icon as={IoRefreshCircle} fontSize={'2xl'}/> 
+          </Button>
+                </Tooltip>
+                <Tooltip label='Add All songs'>
+                <Button>
+            <Icon as={MdOutlinePlaylistAdd} fontSize={'2xl'}/> 
+          </Button>
+                </Tooltip>
+
+          </Flex>
+          </Flex>
           <List
             mt={6}
             spacing={6}
