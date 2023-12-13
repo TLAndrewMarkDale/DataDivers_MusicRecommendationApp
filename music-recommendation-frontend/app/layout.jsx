@@ -15,6 +15,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+import { Head } from "next/document";
 import theme from "theme/theme";
 
 // export const metadata = {
@@ -26,6 +27,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" h="100%">
+      <head>
+      <title>RecNN</title>      
+      <link rel="icon" type="image/svg" sizes="16x16" href="/nnsquare-cropped.svg" />
+        <p>Recommend the playlist based on the songs you search</p>
+      </head>
       <body h="100%">
         <ChakraProvider theme={theme}>
           <Container maxW={"calc(100vw)"} w={"calc(100vw)"}>

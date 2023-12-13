@@ -1,0 +1,20 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg6780" sodipodi:docname="nnsquare.svg" inkscape:version="0.92.4 (5da689c313, 2019-01-14)" viewBox="39.82 58.53 83.92 83.92">
+  <defs id="defs6774"/>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.98994949" inkscape:cx="476.84779" inkscape:cy="710.53468" inkscape:document-units="mm" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="2560" inkscape:window-height="1017" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1"/>
+  <metadata id="metadata6777">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+    <rect style="opacity:1;vector-effect:none;fill:#000803;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" id="rect7347" width="83.92263" height="83.92263" x="39.823158" y="58.531979" rx="0.010259641"/>
+    <g aria-label="NN" transform="matrix(0.52780331,0,0,0.52780331,37.751039,-11.374205)" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333349px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#38f17e;fill-opacity:1;stroke:none" id="flowRoot7325">
+      <path d="m 17.427734,241.94922 v -60 l 48,36 v -36 h 12 v 60 l -48,-36 v 36 z" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'Robot Reavers';-inkscape-font-specification:'Robot Reavers Italic';fill:#38f17e;fill-opacity:1" id="path7349"/>
+      <path d="m 89.427734,241.94922 v -60 l 47.999996,36 v -36 h 12 v 60 l -48,-36 v 36 z" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'Robot Reavers';-inkscape-font-specification:'Robot Reavers Italic';fill:#38f17e;fill-opacity:1" id="path7351"/>
+    </g>
+  </g>
+</svg>

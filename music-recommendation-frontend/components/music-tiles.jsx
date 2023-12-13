@@ -40,7 +40,7 @@ function MusicTitles(props) {
         <Image flex={2} maxW={"4rem"} src={ image || "/default_music.png"} />
 
         <Flex flex={7} direction={"column"} justifyContent={"center"}>
-          <Text textColor={useColorModeValue('black', '#fff')} fontWeight={'bold'}>{track}</Text>
+          <Text textColor={useColorModeValue('black', '#fff')} fontWeight={'bold'} noOfLines={2}>{track}</Text>
           <Text textColor={useColorModeValue('#808080', 'gray')}  fontWeight={'semibold'} noOfLines={1}>
             {artist.replaceAll(';', ', ')}
           </Text>

@@ -47,9 +47,17 @@ const Recommendation = ({ params }) => {
     artist: "",
   });
 
+  const [spotifyUrl,setSpotifyUrl] = useState('');
+
   const [playlistName, setPlaylistName] = useState("");
   const [tracksAddToPlaylist, setTracksAddToPlaylist] = useState([]);
   const [isAddAll, setIsAddAll] = useState(false)
+
+  const navigateToSpotifyUrl = () => {
+    window.open(spotifyUrl, '_blank').focus();
+    setSpotifyUrl('')
+    onClose()
+  }
 
   const handlePlaylistName = async (event) => {
     setPlaylistName(event.target.value);
@@ -74,6 +82,9 @@ const Recommendation = ({ params }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data && data.id) {
+          if(data.external_urls && data.external_urls.spotify) {
+            setSpotifyUrl(data.external_urls.spotify)
+          }
           spotifyUtilityInstance
             .addTracksToPlaylist({
               playlist_id: data.id,
@@ -173,7 +184,6 @@ const Recommendation = ({ params }) => {
 
 
     savePlaylist(playlistName, tracksAddToPlaylist)
-
   }
 
   const regenerateRecommendedTrack = () => {
@@ -184,6 +194,19 @@ const Recommendation = ({ params }) => {
       .then((res) => res.json())
       .then((data) => {
         setRecommendedTrack(data);
+        let count = 0;
+        for(const item in recommendedTrack) {
+          if(isAddedToPlaylist(item)) {
+            count = count + 1;
+          }
+        }
+
+        if(recommendedTrack.length == count) {
+          setIsAddAll(true)
+        }else {
+          setIsAddAll(false)
+        }
+
       });
   };
 
@@ -421,6 +444,9 @@ const Recommendation = ({ params }) => {
               Enjoy your AI-driven listening experience!
             </ModalBody>
             <ModalFooter>
+            <Button borderColor="#1DB954" mr={3} variant={'outline'} onClick={navigateToSpotifyUrl}>
+                Navigate to playlist
+              </Button>
               <Button bg="#1DB954" mr={3} onClick={onClose}>
                 Close
               </Button>
