@@ -85,7 +85,7 @@ This hosts the front-end on http://localhost:3000/.
 ![A Dialog has been shown after successful playlist creation ](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/final%20playlist%20success.png)
 
 **Playlist in the Spotify Client**
-![Image showing the created playlist in the actual Spotify client](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/spotify%20link%20page.PNG)
+![Image showing the created playlist in the actual Spotify client](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/spotifylinkpage.png)
 
 
 ### Phase 2 (MMP)
