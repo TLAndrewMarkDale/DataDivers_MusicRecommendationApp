@@ -41,7 +41,7 @@ function MusicTitles(props) {
 
         <Flex flex={7} direction={"column"} justifyContent={"center"}>
           <Text textColor={useColorModeValue('black', '#fff')} fontWeight={'bold'}>{track}</Text>
-          <Text textColor={useColorModeValue('#808080', 'gray')}  fontWeight={'semibold'}>
+          <Text textColor={useColorModeValue('#808080', 'gray')}  fontWeight={'semibold'} noOfLines={1}>
             {artist.replaceAll(';', ', ')}
           </Text>
         </Flex>
