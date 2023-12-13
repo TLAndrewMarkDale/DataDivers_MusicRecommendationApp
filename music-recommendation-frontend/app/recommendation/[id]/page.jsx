@@ -33,6 +33,7 @@ import {
 import React, { isValidElement, useEffect, useState } from "react";
 import { IoRefreshCircle } from "react-icons/io5";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
+import { CgPlayListRemove } from "react-icons/cg";
 
 const Recommendation = ({ params }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,6 +49,7 @@ const Recommendation = ({ params }) => {
 
   const [playlistName, setPlaylistName] = useState("");
   const [tracksAddToPlaylist, setTracksAddToPlaylist] = useState([]);
+  const [isAddAll, setIsAddAll] = useState(false)
 
   const handlePlaylistName = async (event) => {
     setPlaylistName(event.target.value);
@@ -149,6 +151,31 @@ const Recommendation = ({ params }) => {
       });
   };
 
+  const addAllSongsToPlaylist = () => {
+    if(!isAddAll) {
+    setIsAddAll(true)
+      const newTracksList = JSON.parse(JSON.stringify(tracksAddToPlaylist));
+    
+      for (const item of recommendedTrack) {
+        const newItem = Object.assign(item);
+        newItem["mode"] = "playlist-mode";
+        newTracksList.push(newItem);
+      }
+      setTracksAddToPlaylist(newTracksList);
+    }else {
+      setIsAddAll(false)
+      const trackIds = recommendedTrack.map(item => item.track_id)
+      
+      setTracksAddToPlaylist(
+        tracksAddToPlaylist.filter((track) => !trackIds.includes(track.track_id))
+      );
+    }
+
+
+    savePlaylist(playlistName, tracksAddToPlaylist)
+
+  }
+
   const regenerateRecommendedTrack = () => {
     fetch("/api/server/regeneraterecommendations", {
       method: "POST",
@@ -231,8 +258,8 @@ const Recommendation = ({ params }) => {
           </Button>
                 </Tooltip>
                 <Tooltip label='Add All songs'>
-                <Button>
-            <Icon as={MdOutlinePlaylistAdd} fontSize={'2xl'}/> 
+                <Button onClick={addAllSongsToPlaylist}>
+            <Icon as={isAddAll ? CgPlayListRemove : MdOutlinePlaylistAdd} fontSize={'2xl'}/> 
           </Button>
                 </Tooltip>
 

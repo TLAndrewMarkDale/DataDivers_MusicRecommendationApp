@@ -113,7 +113,7 @@ def send_regeneration():
     for neighbour in random_neighbours:
         new_neighbour_array.append(nbrs[0][neighbour])
 
-    for nbr in new_neighbour_array[0][:]:
+    for nbr in new_neighbour_array:
         row = music_df.iloc[nbr]
         json_array.append(
             {
