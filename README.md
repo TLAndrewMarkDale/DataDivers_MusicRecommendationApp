@@ -61,6 +61,33 @@ This hosts the front-end on http://localhost:3000/.
 
 ### Screenshots
 
+### Final Phase
+
+**Login Page**
+![Login page with spotify web login](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/1.png)
+
+**Spotify Login Page**
+![Image showing the login page from Spotify](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/spotifylogin.png)
+
+**Spotify Grant Access Page**
+![Image showing the grant access page from Spotify for RecNN](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/grantaccess.png)
+
+**Home Page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/2%20after%20login.png)
+
+**Song Recommendation Page**
+![Home page with search bar and 10 trending songs](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/3%20song%20selection.png)
+
+**Song Added to Playlist Page**
+![Songs selected from recommended list section and added to playlist and also entered playlist name](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/final%20recc%20page.png)
+
+**Playlist Created Successfully**
+![A Dialog has been shown after successful playlist creation ](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/dev/screenshot/final%20playlist%20success.png)
+
+**Playlist in the Spotify Client**
+![Image showing the created playlist in the actual Spotify client](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/blob/main/screenshot/spotify%20link%20page.PNG)
+
+
 ### Phase 2 (MMP)
 
 **Login Page**
