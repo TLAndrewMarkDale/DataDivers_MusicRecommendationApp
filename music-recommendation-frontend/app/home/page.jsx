@@ -9,10 +9,10 @@ import {
   List,
   Container,
   useColorModeValue,
+  NumberInput,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
 export default function Home() {
   const router = useRouter();
   const [trendingList, setTrendingList] = useState([]);
@@ -20,6 +20,8 @@ export default function Home() {
 
   const [user, setUser] = useState([]);
   const [image, setImage] = useState('');
+
+  //NumericInput.style.input = '#1DB954';
 
   useEffect(() => {
     // const trackid = localStorage.getItem('track-id');
@@ -61,7 +63,7 @@ export default function Home() {
         <Flex direction={"column"} w={"80%"} minHeight={'container.md'}>
           <VStack align={"flex-start"}>
             <Heading size={"lg"} marginBottom={"6"}>
-              Trending Songs for you
+              Trending songs for you
             </Heading>
             <List
               spacing={6}
@@ -89,7 +91,7 @@ export default function Home() {
                   <MusicCard
                     key={item["track_id"]}
                     track_id={item["track_id"]}
-                    artist={item["artist"]}
+                    artist={item["artist"].split(";").length > 2 ? item["artist"].split(";")[0] + " et al." : item["artist"]}
                     track={item["track"]}
                     genre={item["genre"]}
                     pop={item["pop"]}

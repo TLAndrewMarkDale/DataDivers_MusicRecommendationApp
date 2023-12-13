@@ -227,7 +227,7 @@ const Recommendation = ({ params }) => {
                 <MusicTitles
                   key={item.track_id}
                   track_id={item["track_id"]}
-                  artist={item["artist"]}
+                  artist={item["artist"].split(";").length > 2 ? item["artist"].split(";")[0] + " et al." : item["artist"]}
                   track={item["track"]}
                   genre={item["genre"]}
                   pop={item["pop"]}
@@ -317,7 +317,7 @@ const Recommendation = ({ params }) => {
                 color={"gray.300"}
                 opacity={"0.5"}
               >
-                Select the tracks you want to add
+                Added tracks will appear here.
               </Text>{" "}
             </Flex>
           )}
@@ -351,10 +351,11 @@ const Recommendation = ({ params }) => {
         >
           <ModalOverlay />
           <ModalContent bg={useColorModeValue("#D3D3D3", "#212121")}>
-            <ModalHeader>Success !</ModalHeader>
+            <ModalHeader>Success!</ModalHeader>
             <ModalCloseButton />
             <ModalBody color={useColorModeValue("#000", "#fff")}>
-              Playlist is been created
+              Your playlist has been created.
+              Enjoy your AI-driven listening experience!
             </ModalBody>
             <ModalFooter>
               <Button bg="#1DB954" mr={3} onClick={onClose}>
