@@ -15,7 +15,7 @@ Reasoning: Portmanteau of Recommendation + Nearest Neighbours and a play on reck
 Most of the work has been done without constantly uploading to GitHub. We will correct this for future portions of the project.
 
 Uploaded documents:
-Kick-Off Meeting PowerPoint, MVP PowerPoint, MMP Powerpoint
+Kick-Off Meeting PowerPoint, MVP PowerPoint, MMP PowerPoint, Final Presentation PowerPoint
 
 ### Spotify Login ID and Password
 
