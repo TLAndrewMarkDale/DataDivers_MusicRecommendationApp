@@ -23,6 +23,8 @@ When testing our application, please use the following login credentials. Spotif
 
 ## **Our project is now 100% hosted in the cloud. You can visit our application using the link below with the following login credentials:**
 
+Link : [application link](recnn.app) 
+
 Email : **aidi10032023@gmail.com**
 
 Password : **aidi2023**
