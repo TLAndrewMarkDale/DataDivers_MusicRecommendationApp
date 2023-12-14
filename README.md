@@ -21,12 +21,17 @@ Kick-Off Meeting PowerPoint, MVP PowerPoint, MMP Powerpoint
 
 When testing our application, please use the following login credentials. Spotify requires that applications be approved by their team to allow for any user to use the system. Therefore, this is the login credentials approved for our application currently. 
 
+## **Our project is now 100% hosted in the cloud. You can visit our application using the link below with the following login credentials:**
+
 Email : **aidi10032023@gmail.com**
 
 Password : **aidi2023**
 
-## **MVP** & **MMP**
-To run the project:
+We have included screenshots below for the final phase of the project.
+
+## **MVP** & **MMP** & **Final**
+
+You can also run the project locally if you wish:
 
 Get the code by either cloning this repository using git
 
@@ -36,12 +41,6 @@ Get the code by either cloning this repository using git
 ... or [downloading source code](https://github.com/TLAndrewMarkDale/DataDivers_MusicRecommendationApp/archive/refs/heads/dev.zip) as a zip archive
 
 ## Front-end
-
-~~Demo : http://soundsuggest.online~~
-
-To use this demo, please ensure that you set up the back-end as specified below. The back-end is still hosted locally.
-
-#### Update: For the MMP portion of the project, both the frontend and backend are hosted locally. They will be hosted on the cloud for the final presentation.
 
 ###  Prerequisites
 
